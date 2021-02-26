@@ -6,6 +6,7 @@ import SearchIcon from "@material-ui/icons/Search";
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
+    width: "100%",
   },
   menuButton: {
     marginRight: theme.spacing(2),
@@ -16,8 +17,6 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up("sm")]: {
       display: "block",
     },
-    color: "inherit",
-    textDecoration: "none",
   },
   search: {
     position: "relative",
@@ -67,14 +66,10 @@ function Header() {
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar>
-          <Typography
-            className={classes.title}
-            variant="h6"
-            noWrap
-            component={Link}
-            to="/"
-          >
-            + Friends
+          <Typography className={classes.title} variant="h6" noWrap>
+            <Link to="/" style={{ color: "inherit", textDecoration: "none" }}>
+              + Friends
+            </Link>
           </Typography>
           <div className={classes.search}>
             <div className={classes.searchIcon}>

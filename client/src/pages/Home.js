@@ -33,7 +33,7 @@ function Home() {
   const classes = useStyles();
 
   return (
-    <div className={classes.root}>
+    <div className={classes.root} style={{ height: "100%" }}>
       <div className={classes.card}>
         <Card>
           <CardActionArea component={Link} to="/Friends">
