@@ -1,4 +1,6 @@
 import React from "react";
+import { Link } from "react-router-dom";
+
 import { makeStyles } from "@material-ui/core/styles";
 import {
   Card,
@@ -13,9 +15,12 @@ const useStyles = makeStyles({
   root: {
     display: "flex",
     justifyContent: "center",
+    height: "100%",
   },
   card: {
-    margin: 200,
+    display: "flex",
+    alignItems: "center",
+    textAlign: "center",
   },
   media: {
     margin: 30,
@@ -29,23 +34,22 @@ function Home() {
 
   return (
     <div className={classes.root}>
-      <Card className={classes.card}>
-        <CardActionArea>
-          <CardMedia
-            className={classes.media}
-            image={logo}
-            title="Friends Logo"
-          />
-          <CardContent>
-            <Typography gutterBottom variant="h5" component="h2">
-              + Friends
-            </Typography>
-            {/* <Typography variant="body2" color="textSecondary" component="p">
-              MERN
-            </Typography> */}
-          </CardContent>
-        </CardActionArea>
-      </Card>
+      <div className={classes.card}>
+        <Card>
+          <CardActionArea component={Link} to="/Friends">
+            <CardMedia
+              className={classes.media}
+              image={logo}
+              title="Friends Logo"
+            />
+            <CardContent>
+              <Typography gutterBottom variant="h5" component="h2">
+                + Friends
+              </Typography>
+            </CardContent>
+          </CardActionArea>
+        </Card>
+      </div>
     </div>
   );
 }

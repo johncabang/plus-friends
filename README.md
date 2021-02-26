@@ -9,4 +9,4 @@
 - React
 - Node.js
 
-!["friends"](https://github.com/johncabang/friends/blob/main/docs/friends-001.png?raw=true)
+!["friends"](https://github.com/johncabang/friends/blob/main/docs/friends-002.png?raw=true)

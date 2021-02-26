@@ -4,13 +4,17 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { Router } from "react-router-dom";
 import { createBrowserHistory } from "history";
+import { ThemeProvider } from "@material-ui/core/styles";
+import theme from "./theme";
 
 const history = createBrowserHistory();
 
 ReactDOM.render(
   <React.StrictMode>
     <Router history={history}>
-      <App />
+      <ThemeProvider theme={theme}>
+        <App />
+      </ThemeProvider>
     </Router>
   </React.StrictMode>,
   document.getElementById("root")
