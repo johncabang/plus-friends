@@ -1,10 +1,92 @@
-import { Typography } from "@material-ui/core";
-import React from "react";
+import { useState, useEffect } from "react";
+import Axios from "axios";
+import {
+  Avatar,
+  Button,
+  Card,
+  CardActions,
+  CardContent,
+  CardHeader,
+  Typography,
+} from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
+
+const useStyles = makeStyles(() => ({
+  root: {
+    width: 350,
+  },
+  avatar: {
+    backgroundColor: "#e2c800",
+  },
+}));
 
 function Friends() {
+  const classes = useStyles();
+
+  const [listOfFriends, setListOfFriends] = useState([]);
+
+  useEffect(() => {
+    Axios.get("http://localhost:3001/friends/")
+      .then((response) => {
+        setListOfFriends(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+
   return (
-    <div style={{ height: "100%", width: "100%" }}>
-      <Typography variant="h4">FriendsLIST!</Typography>
+    <div
+      style={{
+        height: "100%",
+        display: "flex",
+        flexDirection: "column",
+      }}
+    >
+      <div>
+        <Typography variant="h5" style={{ margin: 20 }}>
+          FriendsLIST!
+        </Typography>
+      </div>
+      <div>
+        {listOfFriends.map((val) => {
+          return (
+            <div key={val._id} style={{ margin: 20 }}>
+              <Card className={classes.root}>
+                <CardHeader
+                  avatar={
+                    <Avatar aria-label="name" className={classes.avatar}>
+                      {val.name.charAt(0)}
+                    </Avatar>
+                  }
+                  title={val.name}
+                  subheader={val.email}
+                />
+                <CardContent>
+                  <Typography gutterBottom variant="body2" component="h2">
+                    Phone Number: {val.phoneNumber}
+                  </Typography>
+                  <Typography
+                    variant="body2"
+                    color="textSecondary"
+                    component="p"
+                  >
+                    Age: {val.age}
+                  </Typography>
+                </CardContent>
+                <CardActions>
+                  <Button size="small" color="primary">
+                    Edit
+                  </Button>
+                  <Button size="small" color="secondary">
+                    Delete
+                  </Button>
+                </CardActions>
+              </Card>
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 }
