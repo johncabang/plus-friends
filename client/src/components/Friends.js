@@ -13,10 +13,10 @@ import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles(() => ({
   root: {
-    width: 350,
+    width: 325,
   },
   avatar: {
-    backgroundColor: "#e2c800",
+    backgroundColor: "#E5528F",
   },
 }));
 
@@ -43,11 +43,6 @@ function Friends() {
         flexDirection: "column",
       }}
     >
-      <div>
-        <Typography variant="h5" style={{ margin: 20 }}>
-          FriendsLIST!
-        </Typography>
-      </div>
       <div>
         {listOfFriends.map((val) => {
           return (

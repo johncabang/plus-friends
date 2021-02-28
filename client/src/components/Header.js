@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { AppBar, IconButton, Toolbar, Typography } from "@material-ui/core/";
 import { makeStyles } from "@material-ui/core/styles";
 import PersonAddIcon from "@material-ui/icons/PersonAdd";
+import GroupIcon from "@material-ui/icons/Group";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -31,7 +32,15 @@ function Header() {
           </Typography>
           <div>
             <Link
-              to="/add"
+              to="/friends"
+              style={{ color: "inherit", textDecoration: "none" }}
+            >
+              <IconButton aria-label="friends" color="inherit">
+                <GroupIcon />
+              </IconButton>
+            </Link>
+            <Link
+              to="/addfriend"
               style={{ color: "inherit", textDecoration: "none" }}
             >
               <IconButton aria-label="add friend" color="inherit">
