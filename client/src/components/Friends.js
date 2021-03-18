@@ -25,6 +25,8 @@ function Friends() {
 
   const [listOfFriends, setListOfFriends] = useState([]);
 
+  // Display Friendslist
+
   useEffect(() => {
     Axios.get("http://localhost:3001/friends/")
       .then((response) => {

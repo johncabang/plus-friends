@@ -4,9 +4,7 @@ const router = express.Router();
 let Friend = require("../models/Friend");
 
 router.route("/").get((req, res) => {
-  Friend.find()
-    .then((friends) => res.json(friends))
-    .catch((err) => res.status(400).json("Error: " + err));
+  Friend.find().then((friends) => res.send(friends));
 });
 
 router.route("/add").post((req, res) => {
@@ -26,37 +24,35 @@ router.route("/add").post((req, res) => {
 
   newFriend
     .save()
-    .then(() => res.json("Friend added!"))
-    .catch((err) => res.status(400).json("Error: " + err));
+    .then(() => res.send("Success new friend added!"))
+    .catch((err) => res.status(400)("Error: " + err));
 });
 
 router.route("/:id").get((req, res) => {
   Friend.findById(req.params.id)
-    .then((friend) => res.json(friend))
-    .catch((err) => res.status(400).json("Error: " + err));
+    .then((friend) => res.send(friend))
+    .catch((err) => res.status(400)("Error: " + err));
 });
 
 router.route("/:id").delete((req, res) => {
   Friend.findByIdAndDelete(req.params.id)
-    .then(() => res.json("Friend deleted."))
-    .catch((err) => res.status(400).json("Error: " + err));
+    .then(() => res.send("Friend deleted."))
+    .catch((err) => res.status(400)("Error: " + err));
 });
 
 router.route("/update/:id").post((req, res) => {
-  Friend.findById(req.params.id)
-    .then((friend) => {
-      friend.name = req.body.name;
-      friend.email = req.body.email;
-      friend.phoneNumber = Number(req.body.phoneNumber);
-      friend.age = Number(req.body.age);
-      friend.notes = req.body.notes;
+  Friend.findById(req.params.id).then((friend) => {
+    friend.name = req.body.name;
+    friend.email = req.body.email;
+    friend.phoneNumber = Number(req.body.phoneNumber);
+    friend.age = Number(req.body.age);
+    friend.notes = req.body.notes;
 
-      friend
-        .save()
-        .then(() => res.json("Friend updated!"))
-        .catch((err) => res.status(400).json("Error: " + err));
-    })
-    .catch((err) => res.status(400).json("Error: " + err));
+    friend
+      .save()
+      .then(() => res.send("Friend updated!"))
+      .catch((err) => res.status(400)("Error: " + err));
+  });
 });
 
 module.exports = router;

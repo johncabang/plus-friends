@@ -5,8 +5,8 @@ let User = require("../models/User");
 
 router.route("/").get((req, res) => {
   User.find()
-    .then((users) => res.json(users))
-    .catch((err) => res.status(400).json("Error: " + err));
+    .then((users) => res.send(users))
+    .catch((err) => res.status(400)("Error: " + err));
 });
 
 router.route("/add").post((req, res) => {
@@ -16,8 +16,8 @@ router.route("/add").post((req, res) => {
 
   newUser
     .save()
-    .then(() => res.json("Email added!"))
-    .catch((err) => res.status(400).json("Error: " + err));
+    .then(() => res.send("Email added!"))
+    .catch((err) => res.status(400)("Error: " + err));
 });
 
 module.exports = router;

@@ -2,7 +2,7 @@ import { Route, Switch } from "react-router-dom";
 import Home from "./pages/Home";
 import Friends from "./components/Friends";
 import AddFriend from "./components/AddFriend";
-import Header from "./components/Header";
+import Header from "./components/Navbar";
 import "./App.css";
 
 function App() {
