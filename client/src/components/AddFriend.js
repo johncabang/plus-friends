@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 import { makeStyles } from "@material-ui/core/styles";
@@ -33,6 +33,16 @@ const useStyles = makeStyles({
 });
 
 function AddFriend() {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState(0);
+  const [phoneNumber, setPhoneNumber] = useState(0);
+  const [age, setAge] = useState(0);
+  const [notes, setNotes] = useState("");
+
+  const addFriend = () => {
+    // console.log(name + email + phoneNumber + age + notes);
+  };
+
   const classes = useStyles();
   return (
     <div className={classes.root} style={{ height: "100%" }}>
@@ -68,6 +78,9 @@ function AddFriend() {
           variant="outlined"
           color="primary"
           margin="dense"
+          onChange={(event) => {
+            setName(event.target.value);
+          }}
         />
         <TextField
           id="outlined-email"
@@ -75,6 +88,9 @@ function AddFriend() {
           variant="outlined"
           color="primary"
           margin="dense"
+          onChange={(event) => {
+            setEmail(event.target.value);
+          }}
         />
         <TextField
           id="outlined-phone-number"
@@ -83,6 +99,9 @@ function AddFriend() {
           color="primary"
           margin="dense"
           type="number"
+          onChange={(event) => {
+            setPhoneNumber(event.target.value);
+          }}
         />
         <TextField
           id="outlined-age"
@@ -91,6 +110,9 @@ function AddFriend() {
           color="primary"
           margin="dense"
           type="number"
+          onChange={(event) => {
+            setAge(event.target.value);
+          }}
         />
         <TextField
           id="outlined-notes"
@@ -98,15 +120,19 @@ function AddFriend() {
           variant="outlined"
           color="primary"
           margin="dense"
+          onChange={(event) => {
+            setNotes(event.target.value);
+          }}
         />
       </div>
       <Button
         variant="contained"
         color="primary"
         disableElevation
-        style={{ marginTop: 10 }}
+        style={{ marginTop: 10, color: "white" }}
+        onClick={addFriend}
       >
-        ADD
+        ADD FRIEND
       </Button>
     </div>
   );

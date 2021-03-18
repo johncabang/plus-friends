@@ -7,6 +7,8 @@ const PORT = process.env.PORT || 3001;
 const connectDB = require("./config/db");
 connectDB();
 
+// CORS: Allows you to make requests from one website to another website in the browser / connection front-end to back-end
+
 app.use(cors());
 app.use(express.json());
 
