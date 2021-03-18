@@ -1,5 +1,6 @@
+import Axios from "axios";
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 import { makeStyles } from "@material-ui/core/styles";
 import {
@@ -33,6 +34,8 @@ const useStyles = makeStyles({
 });
 
 function AddFriend() {
+  const history = useHistory();
+
   const [name, setName] = useState("");
   const [email, setEmail] = useState(0);
   const [phoneNumber, setPhoneNumber] = useState(0);
@@ -41,6 +44,20 @@ function AddFriend() {
 
   const addFriend = () => {
     // console.log(name + email + phoneNumber + age + notes);
+    Axios.post("http://localhost:3001/friends/add", {
+      name,
+      email,
+      phoneNumber,
+      age,
+      notes,
+    })
+      .then(() => {
+        console.log("Friend successfully added");
+        history.push("/friends");
+      })
+      .catch(() => {
+        console.log("Friend unsuccessfully added");
+      });
   };
 
   const classes = useStyles();
