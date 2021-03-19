@@ -7,6 +7,8 @@ router.route("/").get((req, res) => {
   Friend.find().then((friends) => res.send(friends));
 });
 
+// Add Friend
+
 router.route("/add").post((req, res) => {
   const name = req.body.name;
   const email = req.body.email;
@@ -34,11 +36,7 @@ router.route("/:id").get((req, res) => {
     .catch((err) => res.status(400)("Error: " + err));
 });
 
-router.route("/:id").delete((req, res) => {
-  Friend.findByIdAndDelete(req.params.id)
-    .then(() => res.send("Friend deleted."))
-    .catch((err) => res.status(400)("Error: " + err));
-});
+// Update Friend
 
 router.route("/update/:id").post((req, res) => {
   Friend.findById(req.params.id).then((friend) => {
@@ -53,6 +51,16 @@ router.route("/update/:id").post((req, res) => {
       .then(() => res.send("Friend updated!"))
       .catch((err) => res.status(400)("Error: " + err));
   });
+});
+
+// Delete Friend
+
+router.route("/:id").delete((req, res) => {
+  const id = req.params.id;
+  // console.log(id);
+  Friend.findByIdAndDelete(id)
+    .then(() => res.send("Friend deleted"))
+    .catch((err) => res.status(400)("Error: " + err));
 });
 
 module.exports = router;

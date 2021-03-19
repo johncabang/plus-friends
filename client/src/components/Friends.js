@@ -37,6 +37,30 @@ function Friends() {
       });
   }, []);
 
+  // Delete Friend
+
+  // const deleteEmployee = (id) => {
+  //   Axios.delete(`http://localhost:3001/employees/delete/${id}`).then(
+  //     (response) => {
+  //       setEmployeeList(
+  //         employeeList.filter((employee) => {
+  //           return employee.id != id;
+  //         })
+  //       );
+  //     }
+  //   );
+  // };
+
+  const deleteFriend = (id) => {
+    Axios.delete(`http://localhost:3001/friends/${id}`).then((response) => {
+      setListOfFriends(
+        listOfFriends.filter((val) => {
+          return val._id !== id;
+        })
+      );
+    });
+  };
+
   return (
     <div
       style={{
@@ -75,7 +99,13 @@ function Friends() {
                   <Button size="small" color="primary">
                     Edit
                   </Button>
-                  <Button size="small" color="secondary">
+                  <Button
+                    size="small"
+                    color="secondary"
+                    onClick={() => {
+                      deleteFriend(val._id);
+                    }}
+                  >
                     Delete
                   </Button>
                 </CardActions>
