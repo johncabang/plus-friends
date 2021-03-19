@@ -37,19 +37,33 @@ function Friends() {
       });
   }, []);
 
-  // Delete Friend
+  // Update Friend
 
-  // const deleteEmployee = (id) => {
-  //   Axios.delete(`http://localhost:3001/employees/delete/${id}`).then(
-  //     (response) => {
-  //       setEmployeeList(
-  //         employeeList.filter((employee) => {
-  //           return employee.id != id;
-  //         })
-  //       );
-  //     }
-  //   );
-  // };
+  const updateFriend = (id) => {
+    const newNumber = prompt("Enter new number: ");
+
+    Axios.put(`http://localhost:3001/friends/update/${id}`, {
+      phoneNumber: newNumber,
+      id: id,
+    }).then(() => {
+      setListOfFriends(
+        listOfFriends.map((val) => {
+          return val._id === id
+            ? {
+                _id: id,
+                name: val.name,
+                email: val.email,
+                phoneNumber: newNumber,
+                age: val.age,
+                notes: val.notes,
+              }
+            : val;
+        })
+      );
+    });
+  };
+
+  // Delete Friend
 
   const deleteFriend = (id) => {
     Axios.delete(`http://localhost:3001/friends/${id}`).then((response) => {
@@ -96,7 +110,13 @@ function Friends() {
                   </Typography>
                 </CardContent>
                 <CardActions>
-                  <Button size="small" color="primary">
+                  <Button
+                    size="small"
+                    color="primary"
+                    onClick={() => {
+                      updateFriend(val._id);
+                    }}
+                  >
                     Edit
                   </Button>
                   <Button
