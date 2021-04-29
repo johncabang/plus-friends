@@ -40,14 +40,13 @@ router.route("/:id").get((req, res) => {
 
 router.route("/update/:id").put((req, res) => {
   const id = req.body.id;
-  console.log(id);
+  // console.log(id);
   Friend.findById(id).then((friend) => {
     // friend.name = req.body.name;
     // friend.email = req.body.email;
     friend.phoneNumber = Number(req.body.phoneNumber);
     // friend.age = Number(req.body.age);
     // friend.notes = req.body.notes;
-
     friend
       .save()
       .then(() => res.send("Friend updated!"))
