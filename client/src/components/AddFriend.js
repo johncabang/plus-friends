@@ -41,7 +41,7 @@ function AddFriend() {
   const [phoneNumber, setPhoneNumber] = useState(0);
   const [age, setAge] = useState(0);
   const [notes, setNotes] = useState("");
-  // const [listOfFriends, setListOfFriends] = useState([]);
+  const [listOfFriends, setListOfFriends] = useState([]);
 
   const addFriend = () => {
     // console.log(name + email + phoneNumber + age + notes);
@@ -53,7 +53,10 @@ function AddFriend() {
       notes,
     })
       .then(() => {
-        // setListOfFriends([...listOfFriends, {name, email, phoneNumber, age, notes }]);
+        setListOfFriends([
+          ...listOfFriends,
+          { name, email, phoneNumber, age, notes },
+        ]);
         console.log("Friend successfully added");
         history.push("/friends");
       })
